@@ -1,0 +1,14 @@
+<?php use Phalcon\Tag; ?>
+
+<div class='container-companies'>
+  <p><?php echo Tag::linkTo("companies/", "Company List") ;?></p>
+  <h2><?php echo $company->name; ?></h2>
+  <div class='btn-group'>
+    <?php echo Tag::linkTo(array("companies/edit/" . $company->id, "<span class='glyphicon glyphicon-edit'></span> Edit","class"=>"btn btn-default")) ;?>
+    <?php echo Tag::linkTo(array("http://www.wikipedia.org/wiki/" . $company->wiki_link, "<span class='glyphicon glyphicon-globe'></span> Wikipedia","target"=>"_blank","class"=>"btn btn-default ")) ;?>
+  </div>
+	<p>Country: <?php echo $company->country;  ?></p>
+  <ul>
+    <?php echo $systems; ?>
+  </ul>
+</div>

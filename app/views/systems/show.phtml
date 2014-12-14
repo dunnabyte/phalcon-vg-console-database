@@ -1,0 +1,16 @@
+<?php use Phalcon\Tag; 
+//print_r($system);
+?>
+
+<div class='container-companies'>
+  <p><?php echo Tag::linkTo("systems/", "Console System List") ;?></p>
+  <h2><?php echo $console_system->systems->name; ?></h2>
+  <div class='btn-group'>
+    <?php echo Tag::linkTo(array("systems/edit/" . $console_system->systems->id, "<span class='glyphicon glyphicon-edit'></span> Edit","class"=>"btn btn-default")) ;?>
+    <?php echo Tag::linkTo(array("http://www.wikipedia.org/wiki/" . $console_system->systems->wiki_link, "<span class='glyphicon glyphicon-globe'></span> Wikipedia","target"=>"_blank","class"=>"btn btn-default ")) ;?>
+  </div>  
+	<p>Year: <?php echo $console_system->systems->year;  ?></p>
+  <p>Company: <?php echo Tag::linkTo("companies/show/" . $console_system->companies->url,  $console_system->companies->name) ;?></p>
+
+  
+</div>
