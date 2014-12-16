@@ -6,17 +6,22 @@ Just an example Phalcon app that is a front end for a relational Videogame conso
 Intended as a proof of concept in learning the Phalcon full stack framework, not really intended as a spectacular 
 open ended database.
 
-<p>Uses:
-<li>+Phalcon 1.5</li>
-<li>+MySQL</li>
-<li>+Bootstrap 3</li>
+Uses:
+*****
++Phalcon 1.5<
+
++MySQL
+
++Bootstrap 3
 
 Currently Implemented
-
+*********************
 +Basic entry, editing and retrieval of console and company data
 
-Future goals
 
+
+Future goals
+************
 +Admin user management for editing/adding records
 
 +Graphs and charts for comparing console stats
