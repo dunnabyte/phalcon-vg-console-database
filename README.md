@@ -15,7 +15,9 @@ Currently Implemented
 +Basic entry, editing and retrieval of console and company data
 
 Future goals
+
 +Admin user management for editing/adding records
+
 +Graphs and charts for comparing console stats
 +Image upload and display
 +Table sorting with DataTables components
