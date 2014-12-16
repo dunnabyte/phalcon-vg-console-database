@@ -7,7 +7,7 @@ Intended as a proof of concept in learning the Phalcon full stack framework, not
 open ended database.
 ***
 Uses:
-
+===
 +Phalcon 1.5<
 
 +MySQL
@@ -15,7 +15,7 @@ Uses:
 +Bootstrap 3
 ***
 Currently Implemented
-
+====
 +Basic entry, editing and retrieval of console and company data
 
 
