@@ -2,8 +2,9 @@
 $url = new Phalcon\Mvc\Url();
 ?>
 
-<h2>Edit Console System</h2>
-<p><?php echo Tag::linkTo("systems/show/" . $system->url, "Return to View") ;?></p>
+<h2><?php echo $page_title; ?></h2>
+<p><?php echo $link_return; ?></p>
+
 <form class='form-horizontal' action='/vg/systems/edit/'>
   <?php echo Tag::hiddenField(array("id","value"=>$system->id)); ?>
   <div class="row">

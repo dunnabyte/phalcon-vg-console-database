@@ -4,6 +4,10 @@
 
 
 <div class='container-systems'>
+  <div class='btn-group'>
+    <?php echo Tag::linkTo(array("systems/edit/","<span class='glyphicon glyphicon-edit'></span> New","class"=>"btn btn-default")) ;?>
+    
+  </div>
   <table class='table'>
 	<?php echo $list_systems;  ?>
   </table>

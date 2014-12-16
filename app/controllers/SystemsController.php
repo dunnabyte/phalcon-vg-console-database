@@ -25,11 +25,23 @@ class SystemsController extends \Phalcon\Mvc\Controller
   }
 	public function showAction($url = false) 
 	{
-		$phql = "SELECT Systems.*, Companies.* FROM Systems left join Companies on Systems.company_id = Companies.id where Systems.url LIKE :url:";
+		$phql = "SELECT Systems.*, Companies.*, ListMediaFormats.* FROM Systems 
+            left join Companies on Systems.company_id = Companies.id 
+            left join ListMediaFormats on Systems.media_format_id = ListMediaFormats.id  
+            where Systems.url LIKE :url:";
 		$query = $this->modelsManager->executeQuery($phql,
 			array('url'=>$url));
 		foreach($query as $this_system) {
-
+      if($this_system->systems->ram_bytes > 1048576) {
+        $this_system->systems->ram_formatted = ceil($this_system->systems->ram_bytes / 1048576) . " Megabytes";
+      }
+      elseif($this_system->systems->ram_bytes > 1024) {
+        $this_system->systems->ram_formatted = ceil($this_system->systems->ram_bytes / 1024) . " Kilobytes";
+      }
+      else {
+        $this_system->systems->ram_formatted = ceil($this_system->systems->ram_bytes) . " Bytes";
+      }
+      
 			$this->view->setVar("console_system", $this_system);
       
       //print_r($system);
@@ -94,15 +106,18 @@ class SystemsController extends \Phalcon\Mvc\Controller
       
       
       if($id) {
-
+        $this->view->setVar("page_title","Edit Console System");
         //$this->view->disable();
         $query = $this->modelsManager->executeQuery("SELECT * FROM Systems where id LIKE :id:", array('id'=>$id));  
-        
         foreach($query as $this_system) {
+          $this->view->setVar("link_return",Tag::linkTo("systems/show/" . $this_system->url, "View Company"));        
           $this->view->setVar("system", $this_system);
         }
       }
       else {
+        $this->view->setVar("page_title","Add New Console System");
+
+        $this->view->setVar("link_return",Tag::linkTo("systems/", "Return to List of Console Systems"));       
         $this_system = new stdClass();
         $this_system->url="";
         $this_system->name="";

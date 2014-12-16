@@ -1,5 +1,5 @@
 <?php use Phalcon\Tag; 
-//print_r($system);
+//print_r($console_system->list_media_formats);
 ?>
 
 <div class='container-companies'>
@@ -9,8 +9,17 @@
     <?php echo Tag::linkTo(array("systems/edit/" . $console_system->systems->id, "<span class='glyphicon glyphicon-edit'></span> Edit","class"=>"btn btn-default")) ;?>
     <?php echo Tag::linkTo(array("http://www.wikipedia.org/wiki/" . $console_system->systems->wiki_link, "<span class='glyphicon glyphicon-globe'></span> Wikipedia","target"=>"_blank","class"=>"btn btn-default ")) ;?>
   </div>  
-	<p>Year: <?php echo $console_system->systems->year;  ?></p>
-  <p>Company: <?php echo Tag::linkTo("companies/show/" . $console_system->companies->url,  $console_system->companies->name) ;?></p>
-
-  
+  <div class='row'>
+    <div class='col-sm-6'>
+      <h4>System Details</h4>
+      <p>Year: <?php echo $console_system->systems->year;  ?></p>
+      <p>Company: <?php echo Tag::linkTo("companies/show/" . $console_system->companies->url,  $console_system->companies->name) ;?></p>
+    </div><!--col-->
+    <div class='col-sm-6'>
+      <h4>Technical Specs</h4>
+      <p>CPU: <?php echo $console_system->systems->cpu;  ?></p>
+      <p>RAM: <?php echo $console_system->systems->ram_formatted;?></p>
+      <p>Media Format: <?php echo $console_system->list_media_formats->name;?></p>
+    </div><!--col-->
+  </div><!--row-->
 </div>

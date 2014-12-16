@@ -4,7 +4,16 @@
 
 
 <div class='container-companies'>
-  <ul>
-	<?php echo $list_companies;  ?>
-  </ul>
+  <div class='btn-group'>
+    <?php echo Tag::linkTo(array("companies/edit/","<span class='glyphicon glyphicon-edit'></span> New","class"=>"btn btn-default")) ;?>
+    
+  </div>
+  <table class='table'>
+  <thead>
+    <tr><th>Company Name</th><th>Country of Origin</th></tr>
+  </thead>
+  <tbody>
+    <?php echo $list_companies;  ?>
+  </tbody>
+  </table>
 </div>

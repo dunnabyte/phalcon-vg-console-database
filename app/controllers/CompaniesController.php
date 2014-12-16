@@ -9,7 +9,7 @@ class CompaniesController extends \Phalcon\Mvc\Controller
     $companies = $query->execute();
     $company_name = "";
     foreach($companies as $company) {
-      $company_name .= "<li>" . Tag::linkTo("companies/show/".$company->url, $company->name)  . "</li>";
+      $company_name .= "<tr><td>" . Tag::linkTo("companies/show/".$company->url, $company->name)  . "</td><td>" . $company->country . "</td></tr>";
     }
     $this->view->setVar("list_companies", $company_name);
   }
@@ -46,7 +46,7 @@ class CompaniesController extends \Phalcon\Mvc\Controller
         if($request->isAjax() == true) {
           $company = new Companies();
           //Store and check for errors
-          $success = $company->save($request->getPost(),array('id','name','year','url','wiki_link','country'));
+          $success = $company->save($request->getPost(),array('id','name','year_founded','url','wiki_link','country'));
 
           if($success) {
             
@@ -66,20 +66,25 @@ class CompaniesController extends \Phalcon\Mvc\Controller
       }// if isPost
       else {
         if($id) {
-
-          //$this->view->disable();
+          $this->view->setVar("page_title","Edit Company");
+          
           $query = $this->modelsManager->executeQuery("SELECT * FROM Companies where id LIKE :id:",
             array('id'=>$id));  
           foreach($query as $company) {
+            $this->view->setVar("link_return",Tag::linkTo("companies/show/" . $company->url, "Return to View"));
             $this->view->setVar("company", $company);
           }
         }
         else {
+          
+          $this->view->setVar("page_title","Add New Company");
+          $this->view->setVar("link_return",Tag::linkTo("companies/", "Return to List Companies"));
           $new_company =  new stdClass();
           $new_company->id = 0;
           $new_company->name = "";
           $new_company->country = "";
           $new_company->wiki_link = "";
+          $new_company->year_founded = "";
           $new_company->url = "";
           $this->view->setVar("company", $new_company);
         }
